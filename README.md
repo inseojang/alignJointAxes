@@ -6,6 +6,7 @@ This code is for Maya.
 > ### How to implement the code
 > 1. Open "alignJointAxisZForward.py" in Script Editor
 > 2. Ctrl+Enter for executing the code
+> 3. You can use functions with GUI
 
 > ### How to use the GUI
 > ![Alt text](GUIImageExample.PNG)
