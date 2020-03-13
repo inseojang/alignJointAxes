@@ -2,15 +2,15 @@ import maya.cmds as cmds
 from functools import partial
 
 # Unbind skin (Not used)
-# unbindKeepHistory=True: Keep history�� ���־�� weight ���� ����Ѵ�.
-# skinning�� Ǯ���鼭 pose�� �޶��������� �� �Լ��� ������� �ʰ� ����.
+# unbindKeepHistory=True: Keep history�� ���־��? weight ���� ����Ѵ�?.
+# skinning�� Ǯ���鼭 pose�� �޶��������� �� �Լ��� �������? �ʰ� ����.
 def unbindSkinFunc():
     cmds.skinCluster('kFBXASC045modelShape', e=True, unbind=True, unbindKeepHistory=True, lw=True)
     #cmds.joint('LeftLeg', e=1, ch=1, oj='xyz', sao='yup')
     
     
 # Bind skin (Not used)
-# bindMethod=2: heat map ������� bind
+# bindMethod=2: heat map �������? bind
 def bindSkinFunc():
     cmds.select('kFBXASC045model', add=True)
     cmds.select('Hips', add=True)
@@ -99,18 +99,20 @@ def deleteSkeleton(rootJoint):
     cmds.delete()
 
 # Aligning joint function for UI
-def alignJointsRotAxis(rootJoint, skinModel, *args):
+def alignJointsRotAxis(rootJoint, skinModelList, *args):
     # Get root joint and skin model
     rootJoint = cmds.textField(rootJoint, q=True, tx=True)
-    skinModel = cmds.textField(skinModel, q=True, tx=True)
+    skinModelList = cmds.textField(skinModelList, q=True, tx=True)
     
     # Check inputs
     if not rootJoint:
         print "*Input the root joint"
         return
-    if not skinModel:
+    if not skinModelList:
         print "*Input the skin model"
         return
+        
+    skinModelList = skinModelList.split(',')
     
     # Aligning process
     cmds.select(d=True)
@@ -126,13 +128,15 @@ def alignJointsRotAxis(rootJoint, skinModel, *args):
     print "=== Copying the skeleton is done ==="
     
     # Copy source skeleton transformation to target skeleton
-    setMoveJointsMode(skinModel, True)
+    for skinModel in skinModelList:
+        setMoveJointsMode(skinModel, True)
     cmds.xform(rootJoint, m=cmds.xform(copyRootName, q=True, m=True, ws=True), ws=True)
     cmds.xform(rootJoint, ro=(0, 0, 0))
     cmds.setAttr(rootJoint + '.jointOrient', 0, 0, 0)
     cmds.setAttr(rootJoint + '.rotateAxis', 0, 0, 0)
     copyTransformData(root, rootJoint, copyRootName)
-    setMoveJointsMode(skinModel, False)
+    for skinModel in skinModelList:
+        setMoveJointsMode(skinModel, False)
     
     print "=== Aligning the original skeleton is done ==="
     
