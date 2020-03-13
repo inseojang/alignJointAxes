@@ -2,15 +2,15 @@ import maya.cmds as cmds
 from functools import partial
 
 # Unbind skin (Not used)
-# unbindKeepHistory=True: Keep history¸¦ ÇØÁÖ¾î¾ß weight °ªÀ» ±â¾ïÇÑ´Ù.
-# skinningÀÌ Ç®¸®¸é¼­ pose°¡ ´Þ¶óÁ®¹ö·Á¼­ ÀÌ ÇÔ¼ö´Â »ç¿ëÇÏÁö ¾Ê°í ÀÖÀ½.
+# unbindKeepHistory=True: Keep historyï¿½ï¿½ ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½ weight ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+# skinningï¿½ï¿½ Ç®ï¿½ï¿½ï¿½é¼­ poseï¿½ï¿½ ï¿½Þ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½.
 def unbindSkinFunc():
     cmds.skinCluster('kFBXASC045modelShape', e=True, unbind=True, unbindKeepHistory=True, lw=True)
     #cmds.joint('LeftLeg', e=1, ch=1, oj='xyz', sao='yup')
     
     
 # Bind skin (Not used)
-# bindMethod=2: heat map ±â¹ÝÀ¸·Î bind
+# bindMethod=2: heat map ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ bind
 def bindSkinFunc():
     cmds.select('kFBXASC045model', add=True)
     cmds.select('Hips', add=True)
@@ -18,8 +18,8 @@ def bindSkinFunc():
 
 
 # Set moveJointsMode flag in skinCluster function
-# mjm = True: joints can be moved without modifying the skinning (skiningÀ» ¼öÁ¤ÇÏÁö ¾Ê°í joint¸¸ ¼öÁ¤ °¡´É)
-# After modifying joints, set the mjm=False for taking the skin out of move joints mode(joint ¼öÁ¤ ÈÄ¿¡ False·Î ¼¼ÆÃÇÏ±â)
+# mjm = True: joints can be moved without modifying the skinning (skiningï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ jointï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+# After modifying joints, set the mjm=False for taking the skin out of move joints mode(joint ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½ Falseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½)
 def setMoveJointsMode(skinModel, mode):
     #skinModel = skinModel + "Shape"
     cmds.skinCluster(skinModel, e=True, mjm=mode)
@@ -28,8 +28,8 @@ def setMoveJointsMode(skinModel, mode):
 
 # Create new skeleton
 # parentJoint: current selected joint of the original skeleton
-# rootJoint: the root joint of the original skeleton (aligningÇÒ skeletonÀÇ root joint)
-# copyRootJoint: the root joint of the copied skeleton (°ª º¹»ç¸¦ À§ÇØ »ý¼ºÇÑ skeletonÀÇ root joint)
+# rootJoint: the root joint of the original skeleton (aligningï¿½ï¿½ skeletonï¿½ï¿½ root joint)
+# copyRootJoint: the root joint of the copied skeleton (ï¿½ï¿½ ï¿½ï¿½ï¿½ç¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ skeletonï¿½ï¿½ root joint)
 def createChildJoint(parentJoint, rootJoint, copyRootJoint) :
     cmds.select(rootJoint, hi=True)
     cmds.select(cmds.ls(parentJoint, sl=1))
@@ -69,8 +69,8 @@ def showAllJointLocalAxis(showAxis, *args):
 
 # Copy transform values of copied skeleton to original skeleton
 # parentJoint: current selected joint of the original skeleton
-# rootJoint: the root joint of the original skeleton (aligningÇÒ skeletonÀÇ root joint)
-# copyRootJoint: the root joint of the copied skeleton (°ª º¹»ç¸¦ À§ÇØ »ý¼ºÇÑ skeletonÀÇ root joint)
+# rootJoint: the root joint of the original skeleton (aligningï¿½ï¿½ skeletonï¿½ï¿½ root joint)
+# copyRootJoint: the root joint of the copied skeleton (ï¿½ï¿½ ï¿½ï¿½ï¿½ç¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ skeletonï¿½ï¿½ root joint)
 def copyTransformData(parentJoint, rootJoint, copyRootJoint):
     cmds.select(rootJoint, hi=True)
     cmds.select(cmds.ls(parentJoint, sl=True))
@@ -173,7 +173,7 @@ def alignmentUI():
     # Display all local joint axis
     cmds.text(label="Display local axis of all joints", fn="boldLabelFont")
     cmds.rowLayout("displayAxesLayout", p="mainLayout", numberOfColumns=2, h=35)
-    cmds.text(label="Display local axis of all joints   ", p="displayAxesLayout")
+    cmds.text(label="Display local axis   ", p="displayAxesLayout")
     cmds.checkBox(label="", p="displayAxesLayout",
                   onCommand=partial(showAllJointLocalAxis, True), offCommand=partial(showAllJointLocalAxis, False))
     
