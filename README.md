@@ -19,7 +19,7 @@ This code is for Maya.
 >     * <b>Skin model</b> applied to the target skeleton   
 >  ※ You can drag and drop the joint object or skin model into each text field, but you should delete the path in the case of joint object.   
 >     e.g.) |Hips (X) → Hips (O)
->   * Click the "Align joints" button, then you can see that the z-axis of all joints are aligned in forward direction.
+>   * Click the "<b>Align joints</b>" button, then you can see that the z-axis of all joints are aligned in forward direction.
 >  * #### Rotating the joint in object mode
 >    * In object mode, you can rotate the joint without modifying the mesh and any other joints(e.g. child joints)
 >    * Input
@@ -27,4 +27,4 @@ This code is for Maya.
 >      ※ You can drag and drop the joint object even if there is a path in the name.   
 >      e.g.) |Hips|Spine (O)
 >      * <b>x, y, z rotation value</b> how much you want to rotate the joint
->    * Click the "Rotate joint" button, then you can see that the selected joint only rotates according to values of rotation without modifying other things.
+>    * Click the "<b>Rotate joint</b>" button, then you can see that the selected joint only rotates according to values of rotation without modifying other things.
